@@ -58,3 +58,29 @@ jobs:
         with:
           name: fare-payment-service-test-results
           path: fare-payment-service/target/surefire-reports/
+
+  build-ride-management-service:
+    name: Build and Test Ride Management Service
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v5
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and test ride-management-service
+        working-directory: ./ride-management-service
+        run: mvn clean install
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ride-management-service-test-results
+          path: ride-management-service/target/surefire-reports/
