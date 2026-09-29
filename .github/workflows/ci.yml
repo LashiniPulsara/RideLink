@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 24
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '24'
           distribution: 'temurin'
@@ -32,3 +32,29 @@ jobs:
         with:
           name: account-service-test-results
           path: account-service/target/surefire-reports/
+
+  build-fare-payment-service:
+    name: Build and Test Fare Payment Service
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v5
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build and test fare-payment-service
+        working-directory: ./fare-payment-service
+        run: mvn clean install
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fare-payment-service-test-results
+          path: fare-payment-service/target/surefire-reports/
