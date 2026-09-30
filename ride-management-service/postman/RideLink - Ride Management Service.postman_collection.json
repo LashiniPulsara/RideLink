@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "aa315521-018a-4e8d-bb4b-aa13e4a2425a",
+    "name": "RideLink - Ride Management Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52928998"
+  },
+  "item": [
+    {
+      "name": "01 - Create Ride",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\npm.environment.set(\"rideId\", response.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"passengerId\": \"PASS001\",\r\n  \"pickupLocation\": \"SLIIT Malabe\",\r\n  \"destination\": \"Kaduwela\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/rides",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Get All Rides",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Get Ride By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "04 - Assign Driver",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/assign",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}",
+            "assign"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "05 - Accept Ride",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/accept",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}",
+            "accept"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "06 - Start Ride",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/start",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}",
+            "start"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "07 - Complete Ride",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/complete",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}",
+            "complete"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "08 - Create Ride for Cancellation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\npm.environment.set(\"cancelRideId\", response.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"passengerId\": \"PASS002\",\r\n  \"pickupLocation\": \"Malabe\",\r\n  \"destination\": \"Battaramulla\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/rides",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "09 - Cancel Ride",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{cancelRideId}}/cancel",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{cancelRideId}}",
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10 - Negative - Invalid Status Transition",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/accept",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "rides",
+            "{{rideId}}",
+            "accept"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
