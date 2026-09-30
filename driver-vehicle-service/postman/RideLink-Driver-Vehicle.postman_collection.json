@@ -1,0 +1,290 @@
+{
+  "info": {
+    "_postman_id": "ridelink-driver-vehicle-service",
+    "name": "RideLink - Driver and Vehicle Service",
+    "description": "Postman collection for the RideLink Driver and Vehicle Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
+    }
+  ],
+  "item": [
+    {
+      "name": "Driver Management",
+      "item": [
+        {
+          "name": "Create Driver",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"driverId\": \"DRV001\",\n  \"name\": \"Kamal Perera\",\n  \"phone\": \"0771234567\",\n  \"licenseNumber\": \"B1234567\",\n  \"serviceArea\": \"Colombo\",\n  \"currentLatitude\": 6.9271,\n  \"currentLongitude\": 79.8612,\n  \"available\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Drivers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Driver By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers/DRV001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "DRV001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Driver",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kamal Perera Updated\",\n  \"phone\": \"0771234567\",\n  \"licenseNumber\": \"B1234567\",\n  \"serviceArea\": \"Colombo\",\n  \"currentLatitude\": 6.9271,\n  \"currentLongitude\": 79.8612,\n  \"available\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers/DRV001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "DRV001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Driver",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers/DRV001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "DRV001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Available Drivers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers/available",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "available"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Eligible Drivers",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/drivers/eligible?serviceArea=Colombo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "eligible"
+              ],
+              "query": [
+                {
+                  "key": "serviceArea",
+                  "value": "Colombo"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Management",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleId\": \"VEH001\",\n  \"driverId\": \"DRV001\",\n  \"vehicleType\": \"Car\",\n  \"make\": \"Toyota\",\n  \"model\": \"Prius\",\n  \"plateNumber\": \"CAB-1234\",\n  \"color\": \"White\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles/VEH001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "VEH001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Vehicle By Driver ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles/driver/DRV001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "driver",
+                "DRV001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"driverId\": \"DRV001\",\n  \"vehicleType\": \"Car\",\n  \"make\": \"Toyota\",\n  \"model\": \"Prius\",\n  \"plateNumber\": \"CAB-1234\",\n  \"color\": \"Black\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles/VEH001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "VEH001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/vehicles/VEH001",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "VEH001"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
