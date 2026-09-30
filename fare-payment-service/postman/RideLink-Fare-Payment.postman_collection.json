@@ -1,0 +1,165 @@
+{
+  "info": {
+    "_postman_id": "ridelink-fare-payment-service",
+    "name": "RideLink - Fare & Payment Service",
+    "description": "Postman collection for RideLink Fare & Payment Service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST 01 - Fare Estimate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/fares/estimate?rideId=RIDE001&distance=5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "fares", "estimate"],
+          "query": [
+            {
+              "key": "rideId",
+              "value": "RIDE001"
+            },
+            {
+              "key": "distance",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST 02 - Final Fare",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/fares/final?rideId=RIDE001&distance=5",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "fares", "final"],
+          "query": [
+            {
+              "key": "rideId",
+              "value": "RIDE001"
+            },
+            {
+              "key": "distance",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST 03 - Create Payment",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/payments?rideId=RIDE001&amount=700&paymentMethod=CARD",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "payments"],
+          "query": [
+            {
+              "key": "rideId",
+              "value": "RIDE001"
+            },
+            {
+              "key": "amount",
+              "value": "700"
+            },
+            {
+              "key": "paymentMethod",
+              "value": "CARD"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT 04 - Update Payment Status",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/payments/6abc0eed97ede45678b51be5/status?status=COMPLETED",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "payments", "6abc0eed97ede45678b51be5", "status"],
+          "query": [
+            {
+              "key": "status",
+              "value": "COMPLETED"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET 05 - Get Receipt",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/payments/6abc0eed97ede45678b51be5/receipt",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "payments", "6abc0eed97ede45678b51be5", "receipt"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST 06 - Invalid Fare Distance",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/fares/estimate?rideId=RIDE001&distance=0",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "fares", "estimate"],
+          "query": [
+            {
+              "key": "rideId",
+              "value": "RIDE001"
+            },
+            {
+              "key": "distance",
+              "value": "0"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET 07 - Invalid Payment ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/payments/INVALID123/receipt",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "payments", "INVALID123", "receipt"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
