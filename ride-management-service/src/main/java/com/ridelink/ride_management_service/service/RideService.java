@@ -1,5 +1,7 @@
 package com.ridelink.ride_management_service.service;
 
+import com.ridelink.ride_management_service.client.DriverClient;
+import com.ridelink.ride_management_service.dto.DriverResponse;
 import com.ridelink.ride_management_service.model.Ride;
 import com.ridelink.ride_management_service.repository.RideRepository;
 import org.springframework.stereotype.Service;
@@ -11,9 +13,11 @@ import java.util.Optional;
 public class RideService {
 
     private final RideRepository rideRepository;
+    private final DriverClient driverClient;
 
-    public RideService(RideRepository rideRepository) {
+    public RideService(RideRepository rideRepository, DriverClient driverClient) {
         this.rideRepository = rideRepository;
+        this.driverClient = driverClient;
     }
 
     public Ride createRide(Ride ride) {
@@ -29,10 +33,12 @@ public class RideService {
     }
 
     public Ride assignRide(String id) {
-    Ride ride = rideRepository.findById(id).orElseThrow();
-    ride.setStatus("ASSIGNED");
-    return rideRepository.save(ride);
-}
+        Ride ride = rideRepository.findById(id).orElseThrow();
+        DriverResponse driver = driverClient.getAvailableDriver();
+        ride.setDriverId(driver.getDriverId());
+        ride.setStatus("ASSIGNED");
+        return rideRepository.save(ride);
+    }
 
 public Ride acceptRide(String id) {
     Ride ride = rideRepository.findById(id).orElseThrow();

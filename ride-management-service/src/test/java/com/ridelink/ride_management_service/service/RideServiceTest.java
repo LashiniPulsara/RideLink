@@ -1,5 +1,7 @@
 package com.ridelink.ride_management_service.service;
 
+import com.ridelink.ride_management_service.client.DriverClient;
+import com.ridelink.ride_management_service.dto.DriverResponse;
 import com.ridelink.ride_management_service.model.Ride;
 import com.ridelink.ride_management_service.repository.RideRepository;
 
@@ -22,6 +24,9 @@ class RideServiceTest {
 
     @Mock
     private RideRepository rideRepository;
+
+        @Mock
+        private DriverClient driverClient;
 
     @InjectMocks
     private RideService rideService;
@@ -57,6 +62,10 @@ class RideServiceTest {
     @Test
     void assignRide_shouldChangeStatusToAssigned() {
 
+                DriverResponse driver = new DriverResponse();
+                driver.setDriverId("D001");
+                when(driverClient.getAvailableDriver()).thenReturn(driver);
+
         when(rideRepository.findById("R001"))
                 .thenReturn(Optional.of(ride));
 
@@ -66,6 +75,7 @@ class RideServiceTest {
         Ride result = rideService.assignRide("R001");
 
         assertEquals("ASSIGNED", result.getStatus());
+        assertEquals("D001", result.getDriverId());
 
         verify(rideRepository).save(ride);
     }
