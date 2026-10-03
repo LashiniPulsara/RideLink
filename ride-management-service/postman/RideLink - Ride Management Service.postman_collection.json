@@ -8,6 +8,17 @@
   "item": [
     {
       "name": "01 - Create Ride",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\npm.environment.set(\"rideId\", response.id);"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [],
@@ -21,12 +32,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5002/api/rides",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides"
@@ -41,12 +50,10 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides"
@@ -61,16 +68,14 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d"
+            "{{rideId}}"
           ]
         }
       },
@@ -82,16 +87,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d/assign",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/assign",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d",
+            "{{rideId}}",
             "assign"
           ]
         }
@@ -104,16 +107,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d/accept",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/accept",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d",
+            "{{rideId}}",
             "accept"
           ]
         }
@@ -126,16 +127,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d/start",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/start",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d",
+            "{{rideId}}",
             "start"
           ]
         }
@@ -148,16 +147,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d/complete",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/complete",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d",
+            "{{rideId}}",
             "complete"
           ]
         }
@@ -166,6 +163,17 @@
     },
     {
       "name": "08 - Create Ride for Cancellation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\npm.environment.set(\"cancelRideId\", response.id);"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [],
@@ -179,12 +187,10 @@
           }
         },
         "url": {
-          "raw": "http://localhost:5002/api/rides",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides"
@@ -199,16 +205,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc082cfef63df23490d41e/cancel",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{cancelRideId}}/cancel",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc082cfef63df23490d41e",
+            "{{cancelRideId}}",
             "cancel"
           ]
         }
@@ -221,16 +225,14 @@
         "method": "PUT",
         "header": [],
         "url": {
-          "raw": "http://localhost:5002/api/rides/6abc042bfef63df23490d41d/accept",
-          "protocol": "http",
+          "raw": "{{baseUrl}}/api/rides/{{rideId}}/accept",
           "host": [
-            "localhost"
+            "{{baseUrl}}"
           ],
-          "port": "5002",
           "path": [
             "api",
             "rides",
-            "6abc042bfef63df23490d41d",
+            "{{rideId}}",
             "accept"
           ]
         }
